@@ -1,0 +1,23 @@
+<div class="container">
+  
+  <div class="header">
+      <h1>Menu</h1>
+  </div>
+  
+  <div class="menu_container">
+      {{#each dish as |dish|}}
+      <section class="card">
+      <header>{{dishName}}</header>
+      <p>{{dishDesc}}</p>
+      <p>{{dishPrice}}</p>
+      </section>
+      {{/each}}
+  </div>
+
+  <div class="disclaim">
+    <p>Due to the challenging economic environment, prices are 
+        subject to change.  Ingredient substitution may occur.
+    </p>
+  </div>
+
+</div>
