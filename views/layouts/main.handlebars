@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Pizzateca Romana!</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body class="bodycss">
+
+<header>
+    <h1>Pizzateca Romana</h1>
+</header>
+
+<nav id="navcss">
+<a href="/">Home</a>
+<a href="/menu">Menu</a>
+<a href="/order">Place Order</a>
+{{#if loggedIn}}
+<a href="/logout" id="logout">Logout</a>
+{{else}}
+<a href="/login">Login</a>
+{{/if}}
+</nav>
+
+<main>
+   <div>
+     {{{body}}}
+   </div>
+</main>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+{{/if}}
+</body>
+
+</html>
