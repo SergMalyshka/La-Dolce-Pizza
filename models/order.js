@@ -6,7 +6,7 @@ class Order extends Model{}
 Order.init(
     {
         order_status: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         order_total: {
@@ -14,8 +14,11 @@ Order.init(
             allowNull:false,
         },
         payment_type: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.STRING,
             allowNull:false
+        },
+        instructions: {
+            type: DataTypes.STRING
         }
     },
     {
