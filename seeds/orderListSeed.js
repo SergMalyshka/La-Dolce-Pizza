@@ -3,27 +3,27 @@ const { OrderList } = require('../models');
 const orderListData = [
     {
         OrderId: 1,
-        ItemId: 2
+        DishId: 2
     },
     {
         OrderId: 1,
-        ItemId: 3
+        DishId: 3
     },
     {
         OrderId: 2,
-        ItemId: 2
+        DishId: 2
     },
     {
         OrderId: 2,
-        ItemId: 1
+        DishId: 1
     },
     {
         OrderId: 2,
-        ItemId: 3
+        DishId: 3
     },
     {
         OrderId: 3,
-        ItemId: 1
+        DishId: 1
     }
 ];
 

@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
 const seedCustomer = require('./customerSeed');
-const seedItem = require('./itemSeed');
+const seedDish = require('./dishSeed');
 const seedMgmt = require('./mgmtSeed');
 const seedOrderList = require('./orderListSeed');
 const seedOrder = require('./orderSeed');
@@ -15,8 +15,8 @@ const seedAll = async() => {
     await seedOrder();
     console.log('\n----- Orders SEEDED -----\n');
 
-    await seedItem();
-    console.log('\n----- Item SEEDED -----\n');
+    await seedDish();
+    console.log('\n----- dishes SEEDED -----\n');
 
     await seedOrderList();
     console.log('\n----- Order List SEEDED -----\n');
