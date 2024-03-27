@@ -8,7 +8,7 @@ class OrderList extends Model {}
             type:DataTypes.INTEGER,
             allowNull: false
         },
-        ItemId: {
+        DishId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

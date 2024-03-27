@@ -1,6 +1,6 @@
-const { Item } = require('../models');
+const { Dish } = require('../models');
 
-const itemData = [
+const dishData = [
     {
         name: "Cheez Pizza",
         price: 17.99,
@@ -18,6 +18,6 @@ const itemData = [
     },
 ];
 
-const seedItem = () => Item.bulkCreate(itemData);
+const seedDish = () => Dish.bulkCreate(dishData);
 
-module.exports = seedItem;
+module.exports = seedDish;

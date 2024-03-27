@@ -1,4 +1,4 @@
-const Item = require('./item');
+const Dish = require('./dish');
 const Order = require('./order');
 const Customer = require('./customer')
 const OrderList = require('./orderList')
@@ -7,17 +7,17 @@ const Mgmt = require('./mgmt')
 Customer.hasMany(Order);
 Order.belongsTo(Customer)
 
-Order.belongsToMany(Item, {
+Order.belongsToMany(Dish, {
     through: OrderList,
 });
 
-Item.belongsToMany(Order, {
+Dish.belongsToMany(Order, {
     through: OrderList,
 });
 
 module.exports = {
     Order,
-    Item,
+    Dish,
     Customer,
     OrderList,
     Mgmt
