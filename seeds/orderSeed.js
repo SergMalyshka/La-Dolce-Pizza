@@ -5,7 +5,7 @@ const orderData = [
         order_status: "Complete",
         order_total: 42.88,
         payment_type: 'Cash',
-        adress: '1234 4th street',
+        address: '1234 4th street',
         order_type: "delivery",
         CustomerId: 2
     },
@@ -14,7 +14,7 @@ const orderData = [
         order_total: 69.69,
         payment_type: 'Credit card',
         instructions: "Very spice please!",
-        adress: '3333 Spring Garden st',
+        address: '3333 Spring Garden st',
         order_type: "delivery",
         CustomerId: 3
     },
