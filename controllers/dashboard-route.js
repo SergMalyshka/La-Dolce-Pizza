@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
         
         console.log('---------------------------', orders)
 
-        res.render('dashboard', {orders})
+        res.render('dashboard', {orders, loggedIn: req.session.loggedIn})
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
@@ -58,7 +58,7 @@ router.get('/dashboard/:id', async (req, res) => {
 
         console.log('cooked data-------------------', orders);
 
-        res.render('dashboard', { orders });
+        res.render('dashboard', { orders, loggedIn: req.session.loggedIn });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
