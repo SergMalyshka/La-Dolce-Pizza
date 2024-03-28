@@ -30,13 +30,11 @@ router.post('/addToOrder', async (req, res) => {
 router.get('/total', async (req, res) => {
     try {
         const currentCart = req.session.cart;
-        console.log(currentCart)
         let total = 0;
         for (item of currentCart) {
             const price = parseFloat(item.price)
             total = total + price;
         }
-        console.log(total)
         res.status(200).json({totalPrice: total})
     } catch (err) {
         console.log(err);
@@ -50,6 +48,16 @@ router.get('/', async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
+    }
+})
+
+router.post('/cancel', (req, res) => {
+    if(req.session.cart) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
     }
 })
 
