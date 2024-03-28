@@ -19,6 +19,13 @@ Order.init(
         },
         instructions: {
             type: DataTypes.STRING
+        },
+        address: {
+            type: DataTypes.STRING
+        },
+        order_type : {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
