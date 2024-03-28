@@ -42,7 +42,6 @@ router.post('/login', async (req, res) => {
                 'File: login-routes.js ~ req.session.save ~ req.session.cookie',
                 req.session.cookie
             );
-            console.log(req.session.loggedIn)
 
             res
                 .status(200)

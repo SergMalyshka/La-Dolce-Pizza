@@ -1,10 +1,64 @@
 const router = require('express').Router();
 
-// order routes
+router.post('/addToOrder', async (req, res) => {
 
+    try {
+        req.session.save(() => {
+            const orderItem = {
+                name: req.body.name,
+                price: req.body.price
+            }
 
+            if (req.session.cart) {
+                req.session.cart.push(orderItem)
+                console.log("File: order-routes.js, req.session.save, req.session.cookie")
+            } else {
+                req.session.cart = [];
+                req.session.cart.push(orderItem)
+            }
 
+            res
+                .status(200)
+                .json({ message: "Item added to the cart" })
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
 
+router.get('/total', async (req, res) => {
+    try {
+        const currentCart = req.session.cart;
+        let total = 0;
+        for (item of currentCart) {
+            const price = parseFloat(item.price)
+            total = total + price;
+        }
+        res.status(200).json({totalPrice: total})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
 
+router.get('/', async (req, res) => {
+    try {
+        res.render('order', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+})
+
+router.post('/cancel', (req, res) => {
+    if(req.session.cart) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }
+})
 
 module.exports = router;
