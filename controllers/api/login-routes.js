@@ -2,7 +2,7 @@ const Mgmt = require('../../models/mgmt');
 
 const router = require('express').Router();
 
-// order routes
+
 router.get('/', async (req, res) => {
     try {
         res.render('login')
@@ -11,8 +11,6 @@ router.get('/', async (req, res) => {
         res.status(500).json(err)
     }
 })
-
-
 
 router.post('/login', async (req, res) => {
     try {
@@ -29,7 +27,7 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        const validPassowrd = await dbUserData.checkPassword(req.body.password)
+        const validPassword = await dbUserData.checkPassword(req.body.password);
 
         if (!validPassword) {
             res
