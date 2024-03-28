@@ -4,7 +4,15 @@
       <h1>Place an Order</h1>
   </div>
 
-
-
-
+<div class="menu_container">
+      {{#each cart as |cartItem|}}
+      <section class="card">
+      <header>{{cartItem.name}}</header>
+      <p>{{cartItem.price}}</p>
+      </section>
+      {{/each}}
+  </div>
 </div>
+
+<div id="total">stuff</div>
+<script src="js/cart.js"></script>

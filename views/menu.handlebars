@@ -5,11 +5,11 @@
   </div>
   
   <div class="menu_container">
-      {{#each dish as |dish|}}
+      {{#each dishes as |dish|}}
       <section class="card">
-      <header>{{dishName}}</header>
-      <p>{{dishDesc}}</p>
-      <p>{{dishPrice}}</p>
+      <header>{{dish.name}}</header>
+      <p>{{dish.price}}</p>
+      <button class="add" data-price="{{dish.price}}" data-name="{{dish.name}}">Add to order</button>
       </section>
       {{/each}}
   </div>
@@ -19,5 +19,5 @@
         subject to change.  Ingredient substitution may occur.
     </p>
   </div>
-
 </div>
+<script src="/js/addToOrder.js"></script>
