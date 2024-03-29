@@ -6,7 +6,8 @@ router.post('/addToOrder', async (req, res) => {
         req.session.save(() => {
             const orderItem = {
                 name: req.body.name,
-                price: req.body.price
+                price: req.body.price,
+                id: req.body.id
             }
 
             if (req.session.cart) {
@@ -16,6 +17,8 @@ router.post('/addToOrder', async (req, res) => {
                 req.session.cart = [];
                 req.session.cart.push(orderItem)
             }
+
+            console.log(req.session.cart)
 
             res
                 .status(200)
@@ -59,6 +62,11 @@ router.post('/cancel', (req, res) => {
     } else {
         res.status(404).end()
     }
+})
+
+router.post('checkout', (req, res) => {
+    const order = req.session.cart;
+    
 })
 
 module.exports = router;
