@@ -15,7 +15,7 @@ Dish.init(
         },
         cost: {
             type: DataTypes.DECIMAL,
-            allowNull: false
+            
         }
     },
     {
