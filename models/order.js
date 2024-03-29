@@ -23,6 +23,10 @@ Order.init(
         address: {
             type: DataTypes.STRING
         },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         order_type : {
             type: DataTypes.STRING,
             allowNull: false
