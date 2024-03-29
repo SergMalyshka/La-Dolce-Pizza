@@ -9,7 +9,11 @@ router.get('/dishes', async (req,res) => {
         })
         const menuDb = dbMenu.map((dish) => dish.get({plain:true}));
         console.log(menuDb);
+<<<<<<< Updated upstream
         res.render('menu-manager', {menuDb});
+=======
+        res.render('menu-manager', {menuDb, loggedIn: req.session.loggedIn, cart: req.session.cart });
+>>>>>>> Stashed changes
 
     } catch (err){
         console.log(err);
@@ -18,7 +22,11 @@ router.get('/dishes', async (req,res) => {
 });
 
 router.get('/dishes/add', async (req,res) => {
+<<<<<<< Updated upstream
     res.render('dish-manager')
+=======
+    res.render('dish-manager', { loggedIn: req.session.loggedIn, cart: req.session.cart })
+>>>>>>> Stashed changes
     }
 );
 
