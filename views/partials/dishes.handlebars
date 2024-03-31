@@ -1,8 +1,14 @@
 <section class="card">
-  <p>
+  {{!-- <p>
     Menu Item:
     {{name}}
     Price: ${{price}}</p>
-  {{!-- <p>created by {{user.username}} on {{format_date createdAt}} --}}
-  <a href="/api/menu/dishes/{{id}}">Edit or delete dish</a>
+  <a href="/api/menu/dishes/{{id}}">Edit or delete dish</a> --}}
+
+  <ul class="list-inline">
+    <li class="list-inline-item">Menu Item: {{name}}</li>
+    <li class="list-inline-item">Price: ${{price}}</li>
+    <li class="list-inline-item"><a href="/api/menu/dishes/{{id}}">Edit or
+        delete dish</a></li>
+  </ul>
 </section>
