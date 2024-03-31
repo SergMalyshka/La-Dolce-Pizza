@@ -1,0 +1,17 @@
+<div id="card">
+  <h2 class="text-center">Edit or Delete Menu Item</h2>
+  <div>
+    <input type="text" id="dishId" value="{{editDish.id}}" hidden />
+    <h3>Dish Name:</h3>
+    <input type="text" id="editDishName" value="{{editDish.name}}" />
+  </div>
+  <div>
+    <h3>Price:</h3>
+    <input type="number" id="editDishPrice" value="{{editDish.price}}" />
+
+    <br />
+    <button id="submit">Submit Changes</button>
+    <button id="delete">Delete Menu Item</button>
+  </div>
+</div>
+<script src="/js/editDish.js"></script>
