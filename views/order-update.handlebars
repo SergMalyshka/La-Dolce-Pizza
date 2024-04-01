@@ -4,16 +4,39 @@
 <div>
     <form>
         <div>
-            <label for="order-type"></label>
-            <label for="phone"></label>
-            <label for="address"></label>
-            <label for="status"></label>
+            <label for="order-type">Update Order type:</label>
+                <select class="form-select" id="order-type">
+                    <option selected>Currently: {{orders.order_type}}</option>
+                    <option value="Delivery">Delivery</option>
+                    <option value="Pickup">Pickup</option>
+                </select>
+            <label for="phone">Upade Phone #:</label>
+                <input type="text" id="phone" placeholder="{{orders.phone}}">
+            <label for="address">Update Address</label>
+            {{#if orders.address}}
+                <input type="text" id="address" placeholder="{{orders.address}}">
+            {{else}}
+                <input type="text" id="address">
+            {{/if}}
+            <label for="status">Update order Status:</label>
+                <select class="form-select" id="status">
+                    <option selected>Currently: {{orders.order_status}}</option>
+                    <option value="Ordered">Ordered</option>
+                    <option value="Prepairing">Prepairing</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancled">Cancled</option>
+                </select>
             {{!-- think of a way to update order dishes --}}
-            <label for="payment-type"></label>
-            <label for="order-total"></label>
+            <label for="instructions">Update instructions</label>
+                <input type="text" id="instructions">
+            <label for="payment-type">Update payment type:</label>
+                <input type="text" id="payment-type" placeholder="{{orders.payment_type}}">
+            <label for="order-total">Update order total</label>
+                <input type="text" id="order-total" placeholder="${{orders.order_total}}">
         </div>
         <div>
-            <button value{{orders.id}}>Submit Changes</button>
+            <button value="{{orders.id}}">Submit Changes</button>
         </div>
     </form>
 </div>

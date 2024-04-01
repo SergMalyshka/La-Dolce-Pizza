@@ -54,7 +54,7 @@ router.get('/update/:id', async (req, res) => {
 
         console.log(orders)
 
-        res.render('order-update')
+        res.render('order-update', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart  })
     } catch (err) {
         console.log(err);
         res.status(500).json
