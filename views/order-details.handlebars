@@ -1,0 +1,22 @@
+<div>
+    <h4>Order Details</h4>
+</div>
+<div>
+    <p>Order placed at {{orders.createdAt}}</p>
+    <p>{{orders.order_type}} order for {{orders.phone}}</p>
+    {{#if orders.address}}
+    <p>Address: {{orders.address}}</p>
+    {{/if}}
+    <p>Status: {{orders.order_status}} </p>
+    <p>Items:</p>
+        <ul>
+            {{#each orders.Dishes as |dish|}}
+            <li>{{dish.name}}</li>
+            {{/each}}
+        </ul>
+    <p>Payment type: {{orders.payment_type}}</p>
+    <p>Order Total: ${{orders.order_total}}</p>
+</div>
+<div>
+    <a href="/dashboard/update/{{orders.id}}"><button  type="submit">Update Order</button></a> <button value="{{orders.id}}" type="submit" >Delete Order</button>
+</div>

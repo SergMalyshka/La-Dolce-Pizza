@@ -4,23 +4,9 @@ const { Order, Dish, Customer, OrderList } = require ('../models')
 // shows all orders in the dashboard
 router.get('/', async (req, res) => {
     try {
-        const orderDb = await Order.findAll({
-            include: [
-                {
-                    model: Dish,
-                    attributes: [
-                        'name'
-                    ]
-                },
-                {
-                    model: Customer,
-                    attributes: [
-                        'phone'
-                    ]
-                },
-            ],
-        })
+        const orderDb = await Order.findAll();
 
+        // try to sort orderDb into objects depending on order status
         console.log('-----------------------------', orderDb);
 
         const orders = orderDb.map((orders) =>
@@ -37,19 +23,10 @@ router.get('/', async (req, res) => {
 })
 
 // to see more details of a sinlge order
-router.get('/dashboard/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const orderDb = await Order.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Dish,
-                    attributes: [
-                        'name',
-                        'price',
-                        'cost'
-                    ]
-                },
-            ],
+            include: [{ model: Dish }]
         });
 
         console.log(orderDb)
@@ -58,12 +35,30 @@ router.get('/dashboard/:id', async (req, res) => {
 
         console.log('cooked data-------------------', orders);
 
-        res.render('dashboard', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart  });
+        res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart  });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
     };
 });
 
+router.get('/update/:id', async (req, res) => {
+    try {
+        const orderDb = await Order.findByPk(req.params.id, {
+            include: [{ model: Dish }] 
+        });
+
+        console.log(orderDb);
+
+        const orders = orderDb.get ({plain: true})
+
+        console.log(orders)
+
+        res.render('order-update')
+    } catch (err) {
+        console.log(err);
+        res.status(500).json
+    };
+});
 
 module.exports = router;
