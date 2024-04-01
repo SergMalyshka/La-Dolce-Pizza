@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Order, Dish, Customer, OrderList } = require ('../models')
+const { Order, Dish, OrderList } = require ('../models')
 
 // shows all orders in the dashboard
 router.get('/', async (req, res) => {
     try {
         const orderDb = await Order.findAll();
+
 
         // try to sort orderDb into objects depending on order status
         console.log('-----------------------------', orderDb);
