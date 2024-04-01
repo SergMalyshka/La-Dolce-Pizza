@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, Dish, Customer, OrderList } = require ('../models')
+const { Order, Dish, OrderList } = require ('../models')
 
 // shows all orders in the dashboard
 router.get('/', async (req, res) => {
@@ -10,12 +10,6 @@ router.get('/', async (req, res) => {
                     model: Dish,
                     attributes: [
                         'name'
-                    ]
-                },
-                {
-                    model: Customer,
-                    attributes: [
-                        'phone'
                     ]
                 },
             ],
