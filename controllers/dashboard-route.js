@@ -48,13 +48,21 @@ router.get('/update/:id', async (req, res) => {
             include: [{ model: Dish }] 
         });
 
-        console.log(orderDb);
+        const menuDb = await Dish.findAll()
+
+        
+        // console.log(orderDb);
+        // console.log(menuDb)
 
         const orders = orderDb.get ({plain: true})
+        const menu = menuDb.map((menu) =>
+            menu.get({ plain: true })
+            );
 
         console.log(orders)
+        console.log(menu)
 
-        res.render('order-update', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart  })
+        res.render('order-update', { orders, menu, loggedIn: req.session.loggedIn, cart: req.session.cart  })
     } catch (err) {
         console.log(err);
         res.status(500).json

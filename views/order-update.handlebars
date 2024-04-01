@@ -27,6 +27,26 @@
                     <option value="Completed">Completed</option>
                     <option value="Cancled">Cancled</option>
                 </select>
+                {{!-- delete items here --}}
+                <p>Remove items form the order:</p>
+                    <div class="form-check">
+                        {{#each orders.Dishes as |dish|}}
+                        <div>
+                        <input class="form-check-input" type="checkbox" value="{{dish.id}}" id="remove-check-{{dish.id}}">
+                        <label class="form-check-label" for="remove-check-{{dish.id}}">{{dish.name}}</label>
+                        </div>
+                        {{/each}}
+                        <button id="remove-btn" type="submit">Update Items</button>
+                    </div>
+                <p>Add an item to the Order</p>
+                    <div>
+                        {{#each menu}}
+                        <button type="submit" value="{{id}}, {{orders.id}}" >{{name}}</button>
+                        {{/each}}
+                    </div>
+                <div>
+                    {{!-- add items here --}}
+                </div>
             {{!-- think of a way to update order dishes --}}
             <label for="instructions">Update instructions</label>
                 <input type="text" id="instructions">
