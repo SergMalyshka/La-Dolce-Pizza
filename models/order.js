@@ -17,11 +17,15 @@ Order.init(
             type: DataTypes.STRING,
             allowNull:false
         },
-        instructions: {
+        instuctions: {
             type: DataTypes.STRING
         },
         address: {
             type: DataTypes.STRING
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         order_type : {
             type: DataTypes.STRING,
