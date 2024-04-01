@@ -7,18 +7,16 @@ const orderData = [
         payment_type: 'Cash',
         address: '1234 4th street',
         phone: '8187549853',
-        order_type: "delivery",
-        CustomerId: 2
+        order_type: "Delivery",
     },
     {
         order_status: "Out for delivery",
         order_total: 69.69,
         payment_type: 'Credit card',
-        instructions: "Very spice please!",
+        instuctions: "Very spice please!",
         address: '3333 Spring Garden st',
         phone: '2051648914',
-        order_type: "delivery",
-        CustomerId: 3
+        order_type: "Delivery"
     },
     {
         order_status: "Ordered",
@@ -26,8 +24,7 @@ const orderData = [
         payment_type: 'Digital Wallet',
         instructions: 'No paper napkins',
         phone: '2222222222',
-        order_type: "pickup",
-        CustomerId: 1
+        order_type: "Pickup",
     },
 ];
 
