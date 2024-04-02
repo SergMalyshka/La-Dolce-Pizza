@@ -36,23 +36,23 @@
                         <label class="form-check-label" for="remove-check-{{dish.id}}">{{dish.name}}</label>
                         </div>
                         {{/each}}
-                        <button id="remove-btn" type="submit">Update Items</button>
+                        <button id="remove-btn" type="submit">Remove Items</button>
                     </div>
-                <p>Add an item to the Order</p>
+                
+                    </div>{{!-- add items here --}}
+                <div>
+                    <p>Add an item to the Order</p>
                     <div value="{{orders.id}}" class="update-order">
                         {{#each menu}}
                         <button class="update-dish" type="submit" value="{{id}}" >{{name}}</button>
                         {{/each}}
-                    </div>
-                <div>
-                    {{!-- add items here --}}
                 </div>
-            {{!-- think of a way to update order dishes --}}
+            
             <label for="instructions">Update instructions</label>
                 {{#if order.instructions}}
                 <input type="text" id="instructions" value="{{order.instuctions}}">
                 {{else}}
-                <input type="text" id="instructions" value="No instructions">
+                <input type="text" id="instructions" value="None">
                 {{/if}}
             <label for="payment-type">Update payment type:</label>
                 <input type="text" id="payment-type" value="{{orders.payment_type}}">
