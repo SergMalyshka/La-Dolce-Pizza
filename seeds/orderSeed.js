@@ -13,7 +13,7 @@ const orderData = [
         order_status: "Out for delivery",
         order_total: 69.69,
         payment_type: 'Credit card',
-        instuctions: "Very spice please!",
+        instructions: "Very spice please!",
         address: '3333 Spring Garden st',
         phone: '2051648914',
         order_type: "Delivery"

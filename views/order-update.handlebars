@@ -3,37 +3,34 @@
 </div>
 <div>
   <form>
-    <div class="mb-3">
-      <label for="order-type mb-3">Update Order type:</label>
-      <select class="form-select mb-3" id="order-type">
-        <option selected>Currently: {{orders.order_type}}</option>
+    <div>
+      <label for="order-type">Update Order type:</label>
+      <select class="form-select" id="order-type">
+        <option selected value="{{orders.order_type}}">Currently:
+          {{orders.order_type}}</option>
         <option value="Delivery">Delivery</option>
         <option value="Pickup">Pickup</option>
       </select>
-      <label class="mb-3" for="phone">Update Phone #:</label>
-      <input type="text" id="phone" placeholder="{{orders.phone}}" />
-      <br />
-      <label class="mb-3" for="address">Update Address</label>
+      <label for="phone">Update Phone #:</label>
+      <input type="text" id="phone" value="{{orders.phone}}" />
+      <label for="address">Update Address</label>
       {{#if orders.address}}
-        <input type="text" id="address" placeholder="{{orders.address}}" />
+        <input type="text" id="address" value="{{orders.address}}" />
       {{else}}
         <input type="text" id="address" />
       {{/if}}
-      <br />
-      <label class="mb-1" for="status">Update order Status:</label>
+      <label for="status">Update order Status:</label>
       <select class="form-select" id="status">
-        <option selected>Currently: {{orders.order_status}}</option>
+        <option selected>{{orders.order_status}}</option>
         <option value="Ordered">Ordered</option>
-        <option value="Prepairing">Prepairing</option>
+        <option value="Preparing">Preparing</option>
         <option value="Out for Delivery">Out for Delivery</option>
         <option value="Completed">Completed</option>
-        <option value="Cancled">Cancled</option>
+        <option value="Canceled">Canceled</option>
       </select>
       {{! delete items here }}
-      <br />
-      <div class="form-check mb-3">
-        <label class="mb-1">Remove items:</label>
-
+      <p>Remove items form the order:</p>
+      <div class="form-check">
         {{#each orders.Dishes as |dish|}}
           <div>
             <input
@@ -48,37 +45,36 @@
             >{{dish.name}}</label>
           </div>
         {{/each}}
-        <button id="remove-btn" type="submit">Update Items</button>
+        <button id="remove-btn" type="submit">Remove Items</button>
       </div>
-      <label class="mb-1">Add an item:</label>
-      <div>
+
+    </div>{{! add items here }}
+    <div>
+      <p>Add an item to the Order</p>
+      <div value="{{orders.id}}" class="update-order">
         {{#each menu}}
-          <button type="submit" value="{{id}}, {{orders.id}}">{{name}}</button>
+          <button
+            class="update-dish"
+            type="submit"
+            value="{{id}}"
+          >{{name}}</button>
         {{/each}}
       </div>
-      <div>
-        {{! add items here }}
-      </div>
-      {{! think of a way to update order dishes }}
-      <label class="mb-2" for="instructions">Update instructions</label>
-      <input type="text" id="instructions" />
-      <br />
-      <label class="mb-2" for="payment-type">Update payment type:</label>
-      <input
-        type="text"
-        id="payment-type"
-        placeholder="{{orders.payment_type}}"
-      />
-      <br />
-      <label class="mb-2" for="order-total">Update order total</label>
-      <input
-        type="text"
-        id="order-total"
-        placeholder="${{orders.order_total}}"
-      />
+
+      <label for="instructions">Update instructions</label>
+      {{#if order.instructions}}
+        <input type="text" id="instructions" value="{{order.instuctions}}" />
+      {{else}}
+        <input type="text" id="instructions" value="None" />
+      {{/if}}
+      <label for="payment-type">Update payment type:</label>
+      <input type="text" id="payment-type" value="{{orders.payment_type}}" />
+      <label for="order-total">Update order total</label>
+      <input type="text" id="order-total" value="{{orders.order_total}}" />
     </div>
     <div>
-      <button value="{{orders.id}}">Submit Changes</button>
+      <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
     </div>
   </form>
 </div>
+<script src="/js/updateOrder.js"></script>

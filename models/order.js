@@ -17,7 +17,7 @@ Order.init(
             type: DataTypes.STRING,
             allowNull:false
         },
-        instuctions: {
+        instructions: {
             type: DataTypes.STRING
         },
         address: {
