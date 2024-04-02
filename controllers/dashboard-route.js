@@ -13,10 +13,29 @@ router.get('/', async (req, res) => {
         const orders = orderDb.map((orders) =>
             orders.get({ plain: true })
         );
+        const ordered = []
+        const preparing = []
+        const outForDelivery = []
+        const completed = []
+        const cancelled = []
+
+        for (order in orders) {
+            if(order.order_status === "Ordered") {
+                ordered.push(order)
+            } else if (order.order_status === "Preparing") {
+                preparing.push(order)
+            } else if (order.order_status === "Out for Delivery") {
+                outForDelivery.push(order)
+            } else if (order.order_status === "Completed") {
+                completed.push(order)
+            } else if (order.order_status === "Cancelled") {
+                cancelled.push(order)
+            }
+        }
 
         console.log('---------------------------', orders)
 
-        res.render('dashboard', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart })
+        res.render('dashboard', { orders, ordered, preparing, outForDelivery, completed, cancelled, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
