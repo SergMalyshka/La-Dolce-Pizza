@@ -1,3 +1,6 @@
+const { Order, OrderList } = require('../../models');
+
+
 const router = require('express').Router();
 const { Order } = require('../../models')
 
@@ -39,7 +42,7 @@ router.get('/total', async (req, res) => {
             const price = parseFloat(item.price)
             total = total + price;
         }
-        res.status(200).json({totalPrice: total})
+        res.status(200).json({ totalPrice: total })
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
@@ -56,7 +59,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/cancel', (req, res) => {
-    if(req.session.cart) {
+    if (req.session.cart) {
         req.session.destroy(() => {
             res.status(204).end()
         })
@@ -65,9 +68,37 @@ router.post('/cancel', (req, res) => {
     }
 })
 
-router.post('checkout', (req, res) => {
+router.post('/checkout', async (req, res) => {
     const order = req.session.cart;
-    
+    try {
+        const newOrder = await Order.create({
+            order_status: "Ordered",
+            order_total: req.body.orderTotal,
+            payment_type: req.body.paymentType,
+            instructions: req.body.instructions,
+            address: req.body.address,
+            phone: req.body.phone,
+            order_type: req.body.orderType
+        })
+
+
+        const newOrderId = newOrder.dataValues.id;
+        const cart = req.session.cart;
+        const orderData = []
+
+        console.log("this is the cart: " + cart)
+
+        for (item of cart) {
+            data = { OrderId: newOrderId, DishId: item.id }
+            orderData.push(data)
+        }
+
+        OrderList.bulkCreate(orderData)
+
+    } catch (err) {
+        console.log(err)
+    }
+
 })
 
 router.put('/:id', async (req, res) => {
