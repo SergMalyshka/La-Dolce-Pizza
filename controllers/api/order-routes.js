@@ -2,6 +2,7 @@ const { Order, OrderList } = require('../../models');
 
 
 const router = require('express').Router();
+const { Order } = require('../../models')
 
 router.post('/addToOrder', async (req, res) => {
 
@@ -99,5 +100,34 @@ router.post('/checkout', async (req, res) => {
     }
 
 })
+
+router.put('/:id', async (req, res) => {
+    try {
+        // console.log(req.body)
+        const orderData = await Order.update({
+            order_status: req.body.status,
+            order_total: req.body.total,
+            payment_type: req.body.paymentType,
+            instuctions: req.body.instructions,
+            address: req.body.address,
+            phone: req.body.phone,
+            order_type: req.body.type,
+        },
+        {   where: {
+                id: req.params.id
+            }
+        });
+        console.log('--------------over here-------------------------')
+
+        if(!orderData) {
+            res.status(404).json({ message: "No order with this id" })
+            return
+        }
+
+        res.status(200).json(orderData)
+    } catch (err) {
+        res.status(500).json(err)
+    } 
+});
 
 module.exports = router;
