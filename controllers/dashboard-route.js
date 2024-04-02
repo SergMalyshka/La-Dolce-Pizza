@@ -50,8 +50,6 @@ router.get('/update/:id', async (req, res) => {
         });
 
         const menuDb = await Dish.findAll()
-
-        
         // console.log(orderDb);
         // console.log(menuDb)
 

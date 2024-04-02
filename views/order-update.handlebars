@@ -6,26 +6,26 @@
         <div>
             <label for="order-type">Update Order type:</label>
                 <select class="form-select" id="order-type">
-                    <option selected>Currently: {{orders.order_type}}</option>
+                    <option selected value="{{orders.order_type}}">Currently: {{orders.order_type}}</option>
                     <option value="Delivery">Delivery</option>
                     <option value="Pickup">Pickup</option>
                 </select>
-            <label for="phone">Upade Phone #:</label>
-                <input type="text" id="phone" placeholder="{{orders.phone}}">
+            <label for="phone">Update Phone #:</label>
+                <input type="text" id="phone" value="{{orders.phone}}">
             <label for="address">Update Address</label>
             {{#if orders.address}}
-                <input type="text" id="address" placeholder="{{orders.address}}">
+                <input type="text" id="address" value="{{orders.address}}">
             {{else}}
                 <input type="text" id="address">
             {{/if}}
             <label for="status">Update order Status:</label>
                 <select class="form-select" id="status">
-                    <option selected>Currently: {{orders.order_status}}</option>
+                    <option selected>{{orders.order_status}}</option>
                     <option value="Ordered">Ordered</option>
-                    <option value="Prepairing">Prepairing</option>
+                    <option value="Preparing">Preparing</option>
                     <option value="Out for Delivery">Out for Delivery</option>
                     <option value="Completed">Completed</option>
-                    <option value="Cancled">Cancled</option>
+                    <option value="Canceled">Canceled</option>
                 </select>
                 {{!-- delete items here --}}
                 <p>Remove items form the order:</p>
@@ -39,9 +39,9 @@
                         <button id="remove-btn" type="submit">Update Items</button>
                     </div>
                 <p>Add an item to the Order</p>
-                    <div>
+                    <div value="{{orders.id}}" class="update-order">
                         {{#each menu}}
-                        <button type="submit" value="{{id}}, {{orders.id}}" >{{name}}</button>
+                        <button class="update-dish" type="submit" value="{{id}}" >{{name}}</button>
                         {{/each}}
                     </div>
                 <div>
@@ -49,14 +49,19 @@
                 </div>
             {{!-- think of a way to update order dishes --}}
             <label for="instructions">Update instructions</label>
-                <input type="text" id="instructions">
+                {{#if order.instructions}}
+                <input type="text" id="instructions" value="{{order.instuctions}}">
+                {{else}}
+                <input type="text" id="instructions" value="No instructions">
+                {{/if}}
             <label for="payment-type">Update payment type:</label>
-                <input type="text" id="payment-type" placeholder="{{orders.payment_type}}">
+                <input type="text" id="payment-type" value="{{orders.payment_type}}">
             <label for="order-total">Update order total</label>
-                <input type="text" id="order-total" placeholder="${{orders.order_total}}">
+                <input type="text" id="order-total" value="{{orders.order_total}}">
         </div>
         <div>
-            <button value="{{orders.id}}">Submit Changes</button>
+            <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
         </div>
     </form>
 </div>
+<script src="/js/updateOrder.js"></script>
