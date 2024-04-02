@@ -7,20 +7,84 @@
   <div>
     <h2>All orders:</h2>
     {{!-- ordered div --}}
+    {{#if ordered}}
     <div>
-
+      <h3>Orderd:</h3>
     </div>
-    {{!-- preparing div --}}
+      {{#each ordered as |order|}}
+        <div class="card" id="itemList">
+          <p>Customer Phone: {{order.phone}}</p>
+          <p>Order Status: {{order.order_status}}</p>
+          <a href="/dashboard/{{order.id}}">Order Details</a>
+        </div>
+      {{/each}}
+    {{/if}}
+
+{{!-- preparing div --}}
+    {{#if preparing}}
+      <div>
+        <h3>Preparing:</h3>
+      </div>
+      {{#each preparing as |order|}}
+        <div class="card" id="itemList">
+          <p>Customer Phone: {{order.phone}}</p>
+          <p>Order Status: {{order.order_status}}</p>
+          <a href="/dashboard/{{order.id}}">Order Details</a>
+        </div>
+      {{/each}}
+    {{/if}}
+
     {{!-- Out for Delivery div --}}
+    {{#if outForDelivery}}
+      <div>
+        <h3>Out for Delivery</h3>
+      </div>
+    {{#each outForDelivery as |order|}}
+        <div class="card" id="itemList">
+            <p>Customer Phone: {{order.phone}}</p>
+            <p>Order Status: {{order.order_status}}</p>
+            <a href="/dashboard/{{order.id}}">Order Details</a>
+          </div>
+    {{/each}}
+    {{/if}}
+
     {{!-- completed div --}}
+    {{#if completed}}
+      <div>
+        <h3>Completed</h3>
+      </div>
+    {{#each completed as |order|}}
+        <div class="card" id="itemList">
+            <p>Customer Phone: {{order.phone}}</p>
+            <p>Order Status: {{order.order_status}}</p>
+            <a href="/dashboard/{{order.id}}">Order Details</a>
+          </div>
+    {{/each}}
+    {{/if}}
+
     {{!-- cancelled div --}}
-      {{#each orders as |order|}}
+    {{#if cancelled}}
+      <div>
+        <h3>Cancelled</h3>
+      </div>
+    {{#each cancelled as |order|}}
+        <div class="card" id="itemList">
+            <p>Customer Phone: {{order.phone}}</p>
+            <p>Order Status: {{order.order_status}}</p>
+            <a href="/dashboard/{{order.id}}">Order Details</a>
+          </div>
+    {{/each}}
+    {{/if}}
+
+
+      {{!-- {{#each orders as |order|}}
     <div class="card" id="itemList">
       <p>Customer Phone: {{order.phone}}</p>
       <p>Order Status: {{order.order_status}}</p>
       <a href="/dashboard/{{order.id}}">Order Details</a>
     </div>
-      {{/each}}
+      {{/each}} --}}
+
   </div>
   {{else}}
   <h2>You are not logged in. Click <a href="/api/login">HERE</a> to Login</h2>
