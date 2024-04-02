@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, Dish, OrderList } = require ('../models')
+const { Order, Dish, OrderList } = require('../models')
 
 // shows all orders in the dashboard
 router.get('/', async (req, res) => {
@@ -12,11 +12,30 @@ router.get('/', async (req, res) => {
 
         const orders = orderDb.map((orders) =>
             orders.get({ plain: true })
-            );
-        
+        );
+        const ordered = []
+        const preparing = []
+        const outForDelivery = []
+        const completed = []
+        const cancelled = []
+
+        for (order in orders) {
+            if(order.order_status === "Ordered") {
+                ordered.push(order)
+            } else if (order.order_status === "Preparing") {
+                preparing.push(order)
+            } else if (order.order_status === "Out for Delivery") {
+                outForDelivery.push(order)
+            } else if (order.order_status === "Completed") {
+                completed.push(order)
+            } else if (order.order_status === "Cancelled") {
+                cancelled.push(order)
+            }
+        }
+
         console.log('---------------------------', orders)
 
-        res.render('dashboard', {orders, loggedIn: req.session.loggedIn, cart: req.session.cart })
+        res.render('dashboard', { orders, ordered, preparing, outForDelivery, completed, cancelled, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
@@ -31,12 +50,12 @@ router.get('/:id', async (req, res) => {
         });
 
         console.log(orderDb)
-        
+
         const orders = orderDb.get({ plain: true });
 
         console.log('cooked data-------------------', orders);
 
-        res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart  });
+        res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
@@ -46,22 +65,24 @@ router.get('/:id', async (req, res) => {
 router.get('/update/:id', async (req, res) => {
     try {
         const orderDb = await Order.findByPk(req.params.id, {
-            include: [{ model: Dish }] 
+            include: [{ model: Dish }]
         });
 
         const menuDb = await Dish.findAll()
+
+        
         // console.log(orderDb);
         // console.log(menuDb)
 
-        const orders = orderDb.get ({plain: true})
+        const orders = orderDb.get({ plain: true })
         const menu = menuDb.map((menu) =>
             menu.get({ plain: true })
-            );
+        );
 
         console.log(orders)
         console.log(menu)
 
-        res.render('order-update', { orders, menu, loggedIn: req.session.loggedIn, cart: req.session.cart  })
+        res.render('order-update', { orders, menu, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {
         console.log(err);
         res.status(500).json
