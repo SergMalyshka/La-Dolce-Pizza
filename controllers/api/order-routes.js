@@ -1,8 +1,6 @@
 const { Order, OrderList } = require('../../models');
-
-
 const router = require('express').Router();
-const { Order } = require('../../models')
+
 
 router.post('/addToOrder', async (req, res) => {
 
