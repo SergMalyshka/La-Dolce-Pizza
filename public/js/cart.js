@@ -33,18 +33,22 @@ checkOut.addEventListener('click', async function (event) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
+    
     const totalJson = await totalResponse.json()
     const orderTotal = totalJson.totalPrice;
     
 
     const address = document.querySelector('#address').value
     const phone = document.querySelector('#phone').value
-    const paymentType = document.querySelector('#type').value
+    const paymentType = document.querySelector('#paymentType').value
     const instructions = document.querySelector('#instructions').value
+    const orderType = document.querySelector('#orderType').value
+
+    console.log(instructions)
 
     const response = await fetch('api/orders/checkout', {
         method: 'POST',
-        body: JSON.stringify({ address, phone, paymentType, instructions, orderTotal }),
+        body: JSON.stringify({ address, phone, paymentType, instructions, orderTotal, orderType }),
         headers: { 'Content-Type': 'application/json' }
     })
 })
