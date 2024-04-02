@@ -3,7 +3,7 @@ body {
   background-size: cover;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: blanchedalmond;
+  color: rgb(21, 18, 13);
 }
 
 #topBar {
@@ -27,8 +27,23 @@ label {
 
 #status,
 #order-type {
-  max-width: 20%;
+  width: 20%;
 }
 #itemList {
   max-width: 50%;
+}
+.add {
+  width: 40%;
+  margin: auto;
+}
+.itemList {
+  width: 30%;
+  margin: auto;
+}
+.dishList {
+  width: 50%;
+  margin: auto;
+}
+.orderList {
+  width: 30%;
 }

@@ -1,12 +1,12 @@
 <div class="container">
 
   <div>
-    <h1>Menu</h1>
+    <h1 class="text-center">Menu</h1>
   </div>
 
-  <div class="menu_container">
+  <div class="menu_container itemList">
     {{#each dishes as |dish|}}
-      <section class="card">
+      <section class="card text-center">
         <header>{{dish.name}}</header>
         <p>{{dish.price}}</p>
         <button
@@ -19,10 +19,5 @@
     {{/each}}
   </div>
 
-  <div class="disclaim">
-    <p>Due to the challenging economic environment, prices are subject to
-      change. Ingredient substitution may occur.
-    </p>
-  </div>
 </div>
 <script src="/js/addToOrder.js"></script>
