@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
         console.log('--cancelled-------------------------------------', cancelled)
 
 
-        res.render('dashboard', { orders, ordered, preparing, outForDelivery, completed, cancelled, loggedIn: req.session.loggedIn, cart: req.session.cart })
+        res.render('dashboard', { ordered, preparing, outForDelivery, completed, cancelled, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
