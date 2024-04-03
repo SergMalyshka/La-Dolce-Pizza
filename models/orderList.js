@@ -12,6 +12,10 @@ class OrderList extends Model {}
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        Quantity: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1
+        }
     },
     {
         sequelize,
