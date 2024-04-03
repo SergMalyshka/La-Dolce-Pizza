@@ -85,7 +85,7 @@ router.get('/update/:id', async (req, res) => {
         );
 
         console.log(orders)
-        console.log(menu)
+        // console.log(menu)
 
         res.render('order-update', { orders, menu, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {

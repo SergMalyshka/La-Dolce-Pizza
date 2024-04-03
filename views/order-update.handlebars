@@ -31,8 +31,48 @@
           <option value="Completed">Completed</option>
           <option value="Canceled">Canceled</option>
         </select>
-        {{! delete items here }}
+
+      </div>
+
+        <label for="instructions">Update instructions: &nbsp;&nbsp;</label>
+        {{#if order.instructions}}
+          <input type="text" id="instructions" value="{{order.instuctions}}" />
+        {{else}}
+          <input type="text" id="instructions" value="None" />
+        {{/if}}
         <br />
+        <label for="payment-type">Update payment type:</label>
+        <input type="text" id="payment-type" value="{{orders.payment_type}}" />
+        <br />
+        <label for="order-total">Update order total: &nbsp;&nbsp;&nbsp;</label>
+        <input type="text" id="order-total" value="{{orders.order_total}}" />
+      </div>
+      <div>
+        <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
+      </div>
+        <br />
+      {{! add items here }}
+      <div class="col-6">
+        <br />
+        <label>Add an item to order:</label>
+        <div value="{{orders.id}}" class="update-order">
+        <label for="update-item">Add an item to the order</label>
+        <select class="form-select" id="update-item">
+          <option selected>choose an item</option>
+          {{#each menu}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <label for="quanity-select">Select quanity</label>
+          <input id="quanity-select" type="number" size="3" value="1" max="10">
+            <button
+              id="add-item"
+              type="submit"
+              value="{{orders.id}}"
+            >Add Items</button>
+        </div>
+        <br />
+        {{! delete items here }}
         <label>Remove an item from order:</label>
         <div class="form-check">
           {{#each orders.Dishes as |dish|}}
@@ -51,37 +91,6 @@
           {{/each}}
           <button id="remove-btn" type="submit">Remove Items</button>
         </div>
-
-      </div>{{! add items here }}
-      <div class="col-6">
-        <br />
-        <label>Add an item to order:</label>
-        <div value="{{orders.id}}" class="update-order">
-          {{#each menu}}
-            <button
-              class="update-dish"
-              type="submit"
-              value="{{id}}"
-            >{{name}}</button>
-          {{/each}}
-        </div>
-
-        <label for="instructions">Update instructions: &nbsp;&nbsp;</label>
-        {{#if order.instructions}}
-          <input type="text" id="instructions" value="{{order.instuctions}}" />
-        {{else}}
-          <input type="text" id="instructions" value="None" />
-        {{/if}}
-        <br />
-        <label for="payment-type">Update payment type:</label>
-        <input type="text" id="payment-type" value="{{orders.payment_type}}" />
-        <br />
-        <label for="order-total">Update order total: &nbsp;&nbsp;&nbsp;</label>
-        <input type="text" id="order-total" value="{{orders.order_total}}" />
-      </div>
-      <div>
-        <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
-      </div>
     </form>
   </div>
 </div>
