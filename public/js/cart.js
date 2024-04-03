@@ -1,7 +1,6 @@
 const total = document.querySelector("#total")
 const cancelCart = document.querySelector("#cancel-order")
-const checkOut = document.querySelector('#checkout')
-
+const checkOut = document.querySelector('#checkoutBtn')
 
 async function calculateTotal() {
     const response = await fetch('/api/orders/total', {
@@ -33,10 +32,10 @@ checkOut.addEventListener('click', async function (event) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
-    
+
     const totalJson = await totalResponse.json()
     const orderTotal = totalJson.totalPrice;
-    
+
 
     const address = document.querySelector('#address').value
     const phone = document.querySelector('#phone').value
@@ -44,13 +43,18 @@ checkOut.addEventListener('click', async function (event) {
     const instructions = document.querySelector('#instructions').value
     const orderType = document.querySelector('#orderType').value
 
-    console.log(instructions)
-
     const response = await fetch('api/orders/checkout', {
         method: 'POST',
         body: JSON.stringify({ address, phone, paymentType, instructions, orderTotal, orderType }),
         headers: { 'Content-Type': 'application/json' }
     })
+
+    if (response.status === 400) {
+        alert("Please enter a valid phone number")
+    } else if (response.ok) {
+        alert("Order Created")
+        document.location.replace('/menu');
+    }
 })
 
 calculateTotal();
