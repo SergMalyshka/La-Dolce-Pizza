@@ -1,6 +1,8 @@
 const total = document.querySelector("#total")
 const cancelCart = document.querySelector("#cancel-order")
 const checkOut = document.querySelector('#checkoutBtn')
+const successCLose = document.getElementById("successModalClose")
+const cancelClose = document.getElementById("cancelModalClose")
 
 async function calculateTotal() {
     const response = await fetch('/api/orders/total', {
@@ -9,7 +11,8 @@ async function calculateTotal() {
     });
 
     const orderTotal = await response.json();
-    total.textContent = `Order total: ${orderTotal.totalPrice}`;
+    const formattedTotal = parseFloat(orderTotal.totalPrice).toFixed(2);
+    total.textContent = `Order total: ${formattedTotal}`;
 }
 
 cancelCart.addEventListener('click', async function (event) {
@@ -19,7 +22,7 @@ cancelCart.addEventListener('click', async function (event) {
     });
 
     if (response.ok) {
-        document.location.replace('/menu');
+        showModal("cancelModal")
     } else {
         alert('Failed to cancel order out.');
     }
@@ -50,11 +53,19 @@ checkOut.addEventListener('click', async function (event) {
     })
 
     if (response.status === 400) {
-        alert("Please enter a valid phone number")
+        showModal("phoneModal")
     } else if (response.ok) {
-        alert("Order Created")
-        document.location.replace('/menu');
+        showModal("successModal")
     }
 })
+
+successCLose.addEventListener('click', () => {
+    document.location.replace('/menu');
+})
+
+cancelClose.addEventListener('click', () => {
+    document.location.replace('/menu');
+})
+
 
 calculateTotal();

@@ -11,5 +11,9 @@ for (button of buttons) {
             body: JSON.stringify({ name, price, id }),
             headers: { 'Content-Type': 'application/json' },
         });
+
+        if(response.ok) {
+            showModal("successModal")
+        }
     })
 }

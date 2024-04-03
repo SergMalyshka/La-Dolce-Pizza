@@ -1,5 +1,5 @@
 const { Order, OrderList } = require('../../models');
-const {phone} = require('phone');
+const { phone } = require('phone');
 // const {phone} = require('phone');
 
 
@@ -60,9 +60,8 @@ router.get('/', async (req, res) => {
 
 router.post('/cancel', (req, res) => {
     if (req.session.cart) {
-        req.session.destroy(() => {
-            res.status(204).end()
-        })
+        req.session.cart = [];
+        res.status(204).end()
     } else {
         res.status(404).end()
     }
@@ -70,7 +69,7 @@ router.post('/cancel', (req, res) => {
 
 router.post('/checkout', async (req, res) => {
     const phoneVerifier = phone(req.body.phone)
-    if(phoneVerifier.isValid) {
+    if (phoneVerifier.isValid) {
         try {
             const newOrder = await Order.create({
                 order_status: "Ordered",
@@ -81,22 +80,37 @@ router.post('/checkout', async (req, res) => {
                 phone: req.body.phone,
                 order_type: req.body.orderType
             })
-    
-    
+
+
             const newOrderId = newOrder.dataValues.id;
             const cart = req.session.cart;
             const orderData = []
-    
-            for (item of cart) {
-                data = { OrderId: newOrderId, DishId: item.id }
+            console.log(cart)
+            counter = {}
+
+            cart.forEach(function (obj) {
+                var key = JSON.stringify(obj)
+                counter[key] = (counter[key] || 0) + 1
+            })
+
+            const keys = Object.keys(counter);
+            const mappedKeys = []
+
+            for (let i =0; i < keys.length; i++) {
+                const obj = JSON.parse(keys[i])
+                mappedKeys.push(obj)
+            }
+
+            const values = Object.values(counter)
+
+            for (let i =0; i<mappedKeys.length; i++) {
+                const data = { OrderId: newOrderId, DishId: mappedKeys[i].id, Quantity: values[i]}
                 orderData.push(data)
             }
-    
+
             OrderList.bulkCreate(orderData)
-            req.session.destroy(() => {
-                res.status(200).end()
-            });
-    
+            req.session.cart = [];
+            return res.status(200).end()
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
@@ -118,13 +132,14 @@ router.put('/:id', async (req, res) => {
             phone: req.body.phone,
             order_type: req.body.type,
         },
-        {   where: {
-                id: req.params.id
-            }
-        });
+            {
+                where: {
+                    id: req.params.id
+                }
+            });
         console.log('--------------over here-------------------------')
 
-        if(!orderData) {
+        if (!orderData) {
             res.status(404).json({ message: "No order with this id" })
             return
         }
@@ -132,7 +147,7 @@ router.put('/:id', async (req, res) => {
         res.status(200).json(orderData)
     } catch (err) {
         res.status(500).json(err)
-    } 
+    }
 });
 
 router.delete('/:id', async (req, res) => {
@@ -143,7 +158,7 @@ router.delete('/:id', async (req, res) => {
             },
         });
         if (!orderData) {
-            res.status(404).json({ message: 'No user with this id'})
+            res.status(404).json({ message: 'No user with this id' })
             retrun
         }
         res.status(200).json(orderData)
