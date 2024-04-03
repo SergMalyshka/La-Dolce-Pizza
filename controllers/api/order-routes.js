@@ -101,6 +101,8 @@ router.post('/checkout', async (req, res) => {
             console.log(err)
             res.status(500).json(err)
         }
+    } else {
+        res.status(400).json(req.body.phone)
     }
 })
 
