@@ -2,7 +2,7 @@ const { Order } = require('../models');
 
 const orderData = [
     {
-        order_status: "Complete",
+        order_status: "Completed",
         order_total: 42.88,
         payment_type: 'Cash',
         address: '1234 4th street',
@@ -10,7 +10,7 @@ const orderData = [
         order_type: "Delivery",
     },
     {
-        order_status: "Out for delivery",
+        order_status: "Out for Delivery",
         order_total: 69.69,
         payment_type: 'Credit card',
         instructions: "Very spice please!",
