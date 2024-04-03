@@ -1,4 +1,5 @@
 const { Order, OrderList } = require('../../models');
+const {phone} = require('phone');
 
 
 const router = require('express').Router();
@@ -68,36 +69,39 @@ router.post('/cancel', (req, res) => {
 })
 
 router.post('/checkout', async (req, res) => {
-    const order = req.session.cart;
-    try {
-        const newOrder = await Order.create({
-            order_status: "Ordered",
-            order_total: req.body.orderTotal,
-            payment_type: req.body.paymentType,
-            instructions: req.body.instructions,
-            address: req.body.address,
-            phone: req.body.phone,
-            order_type: req.body.orderType
-        })
-
-
-        const newOrderId = newOrder.dataValues.id;
-        const cart = req.session.cart;
-        const orderData = []
-
-        console.log("this is the cart: " + cart)
-
-        for (item of cart) {
-            data = { OrderId: newOrderId, DishId: item.id }
-            orderData.push(data)
+    const phoneVerifier = phone(req.body.phone)
+    if(phoneVerifier.isValid) {
+        try {
+            const newOrder = await Order.create({
+                order_status: "Ordered",
+                order_total: req.body.orderTotal,
+                payment_type: req.body.paymentType,
+                instructions: req.body.instructions,
+                address: req.body.address,
+                phone: req.body.phone,
+                order_type: req.body.orderType
+            })
+    
+    
+            const newOrderId = newOrder.dataValues.id;
+            const cart = req.session.cart;
+            const orderData = []
+    
+            for (item of cart) {
+                data = { OrderId: newOrderId, DishId: item.id }
+                orderData.push(data)
+            }
+    
+            OrderList.bulkCreate(orderData)
+            req.session.destroy(() => {
+                res.status(200).end()
+            });
+    
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
         }
-
-        OrderList.bulkCreate(orderData)
-
-    } catch (err) {
-        console.log(err)
     }
-
 })
 
 router.put('/:id', async (req, res) => {
