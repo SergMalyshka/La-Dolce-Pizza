@@ -1,24 +1,26 @@
 <div>
-  <h2>Order Details</h2>
+  <h2 class="shadow text-center">Order Details</h2>
 </div>
-<div class="card">
-  <p>Order placed at {{orders.createdAt}}</p>
-  <p>{{orders.order_type}} order for {{orders.phone}}</p>
+<div class="dishList">
+  <p class="card">Order placed at {{format_time orders.createdAt}}</p>
+  <p class="card">{{orders.order_type}} order for {{orders.phone}}</p>
   {{#if orders.address}}
-    <p>Address: {{orders.address}}</p>
+    <p class="card">Address: {{orders.address}}</p>
   {{/if}}
-  <p>Status: {{orders.order_status}} </p>
-  <p>Items:</p>
-  <ul>
-    {{#each orders.Dishes as |dish|}}
-      <li>{{dish.name}}</li>
-    {{/each}}
-  </ul>
-  <p>Insturctions: {{orders.instructions}}</p>
-  <p>Payment type: {{orders.payment_type}}</p>
-  <p>Order Total: ${{orders.order_total}}</p>
+  <p class="card">Status: {{orders.order_status}} </p>
+  <div class="card">
+    <p>Items:</p>
+    <ul>
+      {{#each orders.Dishes as |dish|}}
+        <li>{{dish.name}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  <p class="card">Instructions: {{orders.instructions}}</p>
+  <p class="card">Payment type: {{orders.payment_type}}</p>
+  <p class="card">Order Total: ${{orders.order_total}}</p>
 </div>
-<div>
+<div class="text-center">
   <a href="/dashboard/update/{{orders.id}}"><button type="submit">Update Order</button></a>
   <button value="{{orders.id}}" type="submit">Delete Order</button>
 </div>

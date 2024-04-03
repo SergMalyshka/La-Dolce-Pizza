@@ -1,81 +1,88 @@
+<div class="text-warning">
+  <div>
+    <h4 class="text-center shadow">Update Order #{{orders.id}}</h4>
+  </div>
+  <div>
+    <form>
+      <div class="centerUpd">
+        <label for="order-type">Update Order type:</label>
+        <select class="form-select" id="order-type">
+          <option selected value="{{orders.order_type}}">Currently:
+            {{orders.order_type}}</option>
+          <option value="Delivery">Delivery</option>
+          <option value="Pickup">Pickup</option>
+        </select>
+        <label for="phone">Update Phone #:</label>
+        <input type="text" id="phone" value="{{orders.phone}}" />
+        <br />
+        <label for="address">Update Address:</label>
+        {{#if orders.address}}
+          <input type="text" id="address" value="{{orders.address}}" />
+        {{else}}
+          <input type="text" id="address" />
+        {{/if}}
+        <br />
+        <label for="status">Update order Status:</label>
+        <select class="form-select" id="status">
+          <option selected>{{orders.order_status}}</option>
+          <option value="Ordered">Ordered</option>
+          <option value="Preparing">Preparing</option>
+          <option value="Out for Delivery">Out for Delivery</option>
+          <option value="Completed">Completed</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+        {{! delete items here }}
+        <br />
+        <label>Remove an item from order:</label>
+        <div class="form-check">
+          {{#each orders.Dishes as |dish|}}
+            <div>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="{{dish.id}}"
+                id="remove-check-{{dish.id}}"
+              />
+              <label
+                class="form-check-label"
+                for="remove-check-{{dish.id}}"
+              >{{dish.name}}</label>
+            </div>
+          {{/each}}
+          <button id="remove-btn" type="submit">Remove Items</button>
+        </div>
 
-<div>
-  <h4>Update Order #{{orders.id}}</h4>
-</div>
-<div>
-  <form>
-    <div>
-      <label for="order-type">Update Order type:</label>
-      <select class="form-select" id="order-type">
-        <option selected value="{{orders.order_type}}">Currently:
-          {{orders.order_type}}</option>
-        <option value="Delivery">Delivery</option>
-        <option value="Pickup">Pickup</option>
-      </select>
-      <label for="phone">Update Phone #:</label>
-      <input type="text" id="phone" value="{{orders.phone}}" />
-      <label for="address">Update Address</label>
-      {{#if orders.address}}
-        <input type="text" id="address" value="{{orders.address}}" />
-      {{else}}
-        <input type="text" id="address" value="N/A"/>
-      {{/if}}
-      <label for="status">Update order Status:</label>
-      <select class="form-select" id="status">
-        <option selected>{{orders.order_status}}</option>
-        <option value="Ordered">Ordered</option>
-        <option value="Preparing">Preparing</option>
-        <option value="Out for Delivery">Out for Delivery</option>
-        <option value="Completed">Completed</option>
-        <option value="Cancelled">Cancelled</option>
-      </select>
-      {{! delete items here }}
-      <p>Remove items form the order:</p>
-      <div class="form-check">
-        {{#each orders.Dishes as |dish|}}
-          <div>
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value="{{dish.id}}"
-              id="remove-check-{{dish.id}}"
-            />
-            <label
-              class="form-check-label"
-              for="remove-check-{{dish.id}}"
-            >{{dish.name}}</label>
-          </div>
-        {{/each}}
-        <button id="remove-btn" type="submit">Remove Items</button>
+      </div>{{! add items here }}
+      <div class="col-6">
+        <br />
+        <label>Add an item to order:</label>
+        <div value="{{orders.id}}" class="update-order">
+          {{#each menu}}
+            <button
+              class="update-dish"
+              type="submit"
+              value="{{id}}"
+            >{{name}}</button>
+          {{/each}}
+        </div>
+
+        <label for="instructions">Update instructions: &nbsp;&nbsp;</label>
+        {{#if order.instructions}}
+          <input type="text" id="instructions" value="{{order.instuctions}}" />
+        {{else}}
+          <input type="text" id="instructions" value="None" />
+        {{/if}}
+        <br />
+        <label for="payment-type">Update payment type:</label>
+        <input type="text" id="payment-type" value="{{orders.payment_type}}" />
+        <br />
+        <label for="order-total">Update order total: &nbsp;&nbsp;&nbsp;</label>
+        <input type="text" id="order-total" value="{{orders.order_total}}" />
       </div>
-
-    </div>{{! add items here }}
-    <div>
-      <p>Add an item to the Order</p>
-      <div value="{{orders.id}}" class="update-order">
-        {{#each menu}}
-          <button
-            class="update-dish"
-            type="submit"
-            value="{{id}}"
-          >{{name}}</button>
-        {{/each}}
+      <div>
+        <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
       </div>
-
-      <label for="instructions">Update instructions</label>
-      {{#if order.instructions}}
-        <input type="text" id="instructions" value="{{order.instuctions}}" />
-      {{else}}
-        <input type="text" id="instructions" value="None" />
-      {{/if}}
-      <label for="payment-type">Update payment type:</label>
-      <input type="text" id="payment-type" value="{{orders.payment_type}}" />
-      <label for="order-total">Update order total</label>
-      <input type="text" id="order-total" value="{{orders.order_total}}" />
-    </div>
-    <div>
-      <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
 <script src="/js/updateOrder.js"></script>
