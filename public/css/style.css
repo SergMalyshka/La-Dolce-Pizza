@@ -1,9 +1,14 @@
 body {
   background-image: url("../images/bg_1.jpg");
-  background-size: cover;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: rgb(21, 18, 13);
+  color: rgb(233, 193, 122);
+  background-size: contain;
+  background-position: center;
+}
+
+.shadow {
+  -webkit-text-stroke: 1px grey;
 }
 
 #topBar {
@@ -24,13 +29,12 @@ button {
 label {
   font-size: 20px;
 }
-
+.centerUpd {
+  margin: auto;
+}
 #status,
 #order-type {
   width: 20%;
-}
-#itemList {
-  max-width: 50%;
 }
 .add {
   width: 40%;
@@ -46,4 +50,17 @@ label {
 }
 .orderList {
   width: 30%;
+  margin: auto;
+}
+@media screen and (max-width: 1204px) {
+  .itemList {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 776px) {
+  .itemList,
+  .dishList,
+  .orderList {
+    width: 70%;
+  }
 }

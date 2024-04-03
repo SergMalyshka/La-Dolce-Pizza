@@ -1,7 +1,7 @@
 <div>
-  <h2>Order Details</h2>
+  <h2 class="shadow text-center">Order Details</h2>
 </div>
-<div class="col-5">
+<div class="dishList">
   <p class="card">Order placed at {{format_time orders.createdAt}}</p>
   <p class="card">{{orders.order_type}} order for {{orders.phone}}</p>
   {{#if orders.address}}
@@ -20,7 +20,7 @@
   <p class="card">Payment type: {{orders.payment_type}}</p>
   <p class="card">Order Total: ${{orders.order_total}}</p>
 </div>
-<div>
+<div class="text-center">
   <a href="/dashboard/update/{{orders.id}}"><button type="submit">Update Order</button></a>
   <button value="{{orders.id}}" type="submit">Delete Order</button>
 </div>
