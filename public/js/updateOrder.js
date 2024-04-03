@@ -9,14 +9,15 @@ const orderUpdateHandler = async (event) => {
     const paymentType = document.querySelector('#payment-type').value.trim();
     const total = document.querySelector('#order-total').value.trim();
     const idValue = document.querySelector('#submit-btn').value
-    console.log(type)
-    console.log(phone)
-    console.log(address)
-    console.log(status)
-    console.log(instructions)
-    console.log(paymentType)
-    console.log(total)
-    console.log(idValue)
+ 
+    // console.log(type)
+    // console.log(phone)
+    // console.log(address)
+    // console.log(status)
+    // console.log(instructions)
+    // console.log(paymentType)
+    // console.log(total)
+    // console.log(idValue)
 
     if (type && phone && address && status && instructions && paymentType && total) {
         const response = await fetch(`/api/orders/${idValue}`, {
@@ -33,7 +34,7 @@ const orderUpdateHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
-        console.log(response)
+        // console.log(response)
         if (response.ok) {
             document.location.replace(`/dashboard/${idValue}`)
         } else {
@@ -42,41 +43,41 @@ const orderUpdateHandler = async (event) => {
     }
 }
 
-const orderListCreateHandler = async(event) => {
-    event.preventDefault
+// const orderListCreateHandler = async(event) => {
+//     event.preventDefault
 
-    const menuItem = document.querySelector('#update-item').value.trim();
-    const orderId = document.querySelector('#add-item').value;
-    const quantity = document.querySelector('#quanity-select').value.trim();
+//     const menuItem = document.querySelector('#update-item').value.trim();
+//     const orderId = document.querySelector('#add-item').value;
+//     const quantity = document.querySelector('#quanity-select').value.trim();
 
-    console.log(menuItem)
-    console.log(orderId)
-    console.log(quantity)
+//     console.log(menuItem)
+//     console.log(orderId)
+//     console.log(quantity)
 
-    if (menuItem && orderId && quantity) {
-        const response = await fetch('/api/order-list', {
-            method: 'POST',
-            body: JSON.stringify({
-                orderId,
-                menuItem,
-                quantity
-            }),
-            headers: { 'Content-Type': 'application/json' },
-        });
+//     if (menuItem && orderId && quantity) {
+//         const response = await fetch('/api/order-list', {
+//             method: 'POST',
+//             body: JSON.stringify({
+//                 orderId,
+//                 menuItem,
+//                 quantity
+//             }),
+//             headers: { 'Content-Type': 'application/json' },
+//         });
 
-        console.log(response)
-        if (response.ok) {
-            document.location.replace(`/dashboard/${orderId}`)
-        } else {
-            alert('failed to update')
-        }
-    }
-}
+//         console.log(response)
+//         if (response.ok) {
+//             document.location.replace(`/dashboard/${orderId}`)
+//         } else {
+//             alert('failed to update')
+//         }
+//     }
+// }
 
-const dishRemoveHandler = async(event) => {
-    event.preventDefault
+// const dishRemoveHandler = async(event) => {
+//     event.preventDefault
 
-}
+// }
 
-document.querySelector('#add-item').addEventListener('click', orderListCreateHandler)
+// document.querySelector('#add-item').addEventListener('click', orderListCreateHandler)
 document.querySelector('#submit-btn').addEventListener('click', orderUpdateHandler)

@@ -19,7 +19,7 @@
         {{#if orders.address}}
           <input type="text" id="address" value="{{orders.address}}" />
         {{else}}
-          <input type="text" id="address" />
+          <input type="text" id="address" value="N/A" />
         {{/if}}
         <br />
         <label for="status">Update order Status:</label>
@@ -51,46 +51,6 @@
         <button id="submit-btn" value="{{orders.id}}">Submit Changes</button>
       </div>
         <br />
-      {{! add items here }}
-      <div class="col-6">
-        <br />
-        <label>Add an item to order:</label>
-        <div value="{{orders.id}}" class="update-order">
-        <label for="update-item">Add an item to the order</label>
-        <select class="form-select" id="update-item">
-          <option selected>choose an item</option>
-          {{#each menu}}
-          <option value="{{id}}">{{name}}</option>
-          {{/each}}
-        </select>
-        <label for="quanity-select">Select quanity</label>
-          <input id="quanity-select" type="number" size="3" value="1" max="10">
-            <button
-              id="add-item"
-              type="submit"
-              value="{{orders.id}}"
-            >Add Items</button>
-        </div>
-        <br />
-        {{! delete items here }}
-        <label>Remove an item from order:</label>
-        <div class="form-check">
-          {{#each orders.Dishes as |dish|}}
-            <div>
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="{{dish.id}}"
-                id="remove-check-{{dish.id}}"
-              />
-              <label
-                class="form-check-label"
-                for="remove-check-{{dish.id}}"
-              >{{dish.name}}</label>
-            </div>
-          {{/each}}
-          <button id="remove-btn" type="submit">Remove Items</button>
-        </div>
     </form>
   </div>
 </div>
