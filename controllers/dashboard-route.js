@@ -58,7 +58,7 @@ router.get('/:id', async (req, res) => {
 
         const orders = orderDb.get({ plain: true });
 
-        console.log('cooked data-------------------', orders);
+        // console.log('cooked data-------------------', orders);
 
         res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart });
     } catch (err) {
