@@ -6,12 +6,31 @@
   </div>
   <div>
     <h2 class="text-warning text-center shadow">All orders:</h2>
-      {{#each orders as |order|}}
+    {{#if ordered}}
+      <div>
+        <h3>Ordered</h3>
+      </div>
+      {{#each ordered as |order|}}
     {{!-- <div class="card dishList" id="itemList">
       <p>Customer Phone: {{order.phone}}</p>
       <p>Order Status: {{order.order_status}}</p>
       <a href="/dashboard/{{order.id}}">Order Details</a>
     </div> --}}
+      <div class="card dishList">
+        <ul class="list-inline">
+          <li class="list-inline-item">Customer Phone: {{order.phone}}</li>
+          <li class="list-inline-item">Order Status: {{order.order_status}}</li>
+          <li class="list-inline-item small"><a href="dashboard/{{order.id}}">Order Details</a></li>
+        </ul>
+      </div>
+      {{/each}}
+      {{/if}}
+    {{!-- Out for Delivery div --}}
+    {{#if outForDelivery}}
+      <div>
+        <h3>Out for Delivery</h3>
+      </div>
+    {{#each outForDelivery as |order|}}
     <div class="card dishList">
       <ul class="list-inline">
         <li class="list-inline-item">Customer Phone: {{order.phone}}</li>
@@ -19,20 +38,6 @@
         <li class="list-inline-item small"><a href="dashboard/{{order.id}}">Order Details</a></li>
       </ul>
     </div>
-      {{/each}}
-    {{/if}}
-
-    {{!-- Out for Delivery div --}}
-    {{#if outForDelivery}}
-      <div>
-        <h3>Out for Delivery</h3>
-      </div>
-    {{#each outForDelivery as |order|}}
-        <div class="card" id="itemList">
-            <p>Customer Phone: {{order.phone}}</p>
-            <p>Order Status: {{order.order_status}}</p>
-            <a href="/dashboard/{{order.id}}">Order Details</a>
-          </div>
     {{/each}}
     {{/if}}
 
@@ -42,11 +47,13 @@
         <h3>Completed</h3>
       </div>
     {{#each completed as |order|}}
-        <div class="card" id="itemList">
-            <p>Customer Phone: {{order.phone}}</p>
-            <p>Order Status: {{order.order_status}}</p>
-            <a href="/dashboard/{{order.id}}">Order Details</a>
-          </div>
+    <div class="card dishList">
+      <ul class="list-inline">
+        <li class="list-inline-item">Customer Phone: {{order.phone}}</li>
+        <li class="list-inline-item">Order Status: {{order.order_status}}</li>
+        <li class="list-inline-item small"><a href="dashboard/{{order.id}}">Order Details</a></li>
+      </ul>
+    </div>
     {{/each}}
     {{/if}}
 
@@ -56,11 +63,13 @@
         <h3>Cancelled</h3>
       </div>
     {{#each cancelled as |order|}}
-        <div class="card" id="itemList">
-            <p>Customer Phone: {{order.phone}}</p>
-            <p>Order Status: {{order.order_status}}</p>
-            <a href="/dashboard/{{order.id}}">Order Details</a>
-          </div>
+    <div class="card dishList">
+      <ul class="list-inline">
+        <li class="list-inline-item">Customer Phone: {{order.phone}}</li>
+        <li class="list-inline-item">Order Status: {{order.order_status}}</li>
+        <li class="list-inline-item small"><a href="dashboard/{{order.id}}">Order Details</a></li>
+      </ul>
+    </div>
     {{/each}}
     {{/if}}
 

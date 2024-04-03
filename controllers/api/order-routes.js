@@ -1,6 +1,6 @@
 const { Order, OrderList } = require('../../models');
 const {phone} = require('phone');
-const { phone } = require('phone');
+// const {phone} = require('phone');
 
 
 const router = require('express').Router();
@@ -132,5 +132,22 @@ router.put('/:id', async (req, res) => {
         res.status(500).json(err)
     } 
 });
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const orderData = await Order.destroy({
+            where: {
+                id: req.params.id
+            },
+        });
+        if (!orderData) {
+            res.status(404).json({ message: 'No user with this id'})
+            retrun
+        }
+        res.status(200).json(orderData)
+    } catch (err) {
+        res.status(500).json(err);
+    };
+})
 
 module.exports = router;
