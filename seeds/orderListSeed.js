@@ -20,12 +20,12 @@ const orderListData = [
     {
         OrderId: 2,
         DishId: 3,
-        Quanity: 2
+        Quantity: 2
     },
     {
         OrderId: 3,
         DishId: 1,
-        Quanity: 4
+        Quantity: 4
     }
 ];
 

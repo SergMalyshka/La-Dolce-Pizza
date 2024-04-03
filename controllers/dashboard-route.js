@@ -32,12 +32,12 @@ router.get('/', async (req, res) => {
                 cancelled.push(orders[i])
             }
         }
-        console.log('---------------------------', orders)
-        console.log('--ordered-------------------------------------', ordered)
-        console.log('--preparing-------------------------------------', preparing)
-        console.log('--outForDelivery-------------------------------------', outForDelivery)
-        console.log('--completed-------------------------------------', completed)
-        console.log('--cancelled-------------------------------------', cancelled)
+        // console.log('---------------------------', orders)
+        // console.log('--ordered-------------------------------------', ordered)
+        // console.log('--preparing-------------------------------------', preparing)
+        // console.log('--outForDelivery-------------------------------------', outForDelivery)
+        // console.log('--completed-------------------------------------', completed)
+        // console.log('--cancelled-------------------------------------', cancelled)
 
 
         res.render('dashboard', { ordered, preparing, outForDelivery, completed, cancelled, loggedIn: req.session.loggedIn, cart: req.session.cart })
@@ -54,11 +54,11 @@ router.get('/:id', async (req, res) => {
             include: [{ model: Dish }]
         });
 
-        console.log(orderDb)
+        // console.log(orderDb)
 
         const orders = orderDb.get({ plain: true });
 
-        console.log('cooked data-------------------', orders);
+        // console.log('cooked data-------------------', orders);
 
         res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart });
     } catch (err) {
@@ -75,17 +75,18 @@ router.get('/update/:id', async (req, res) => {
 
         const menuDb = await Dish.findAll()
 
-
-        // console.log(orderDb);
-        // console.log(menuDb)
-
         const orders = orderDb.get({ plain: true })
         const menu = menuDb.map((menu) =>
             menu.get({ plain: true })
         );
-
-        console.log(orders)
-        console.log(menu)
+        
+        // for (let i=0; i < orders.Dishes.length; i++) {
+        //     // console.log(orders.Dishes[i].name)
+        //     const filterMenu = menu.filter((item, index, array) => {
+        //         return item.name !== orders.Dishes[i].name;
+        //     })
+        //     console.log(filterMenu)
+        // }
 
         res.render('order-update', { orders, menu, loggedIn: req.session.loggedIn, cart: req.session.cart })
     } catch (err) {
