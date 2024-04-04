@@ -22,8 +22,6 @@ router.post('/addToOrder', async (req, res) => {
                 req.session.cart.push(orderItem)
             }
 
-            console.log(req.session.cart)
-
             res
                 .status(200)
                 .json({ message: "Item added to the cart" })
