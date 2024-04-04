@@ -31,7 +31,8 @@ label {
   margin: auto;
 }
 #status,
-#order-type {
+#order-type,
+#payment-type {
   width: 20%;
 }
 .itemList {
@@ -102,4 +103,8 @@ label {
   .dashboardHeader {
     text-align: center;
     color: black;
+  }
+
+  .update-dropdown {
+    margin: auto;
   }
