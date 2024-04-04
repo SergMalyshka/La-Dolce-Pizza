@@ -2,17 +2,15 @@ body {
   background-image: url("../images/bg_1.jpg");
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: rgb(233, 193, 122);
   background-size: cover;
   background-position: center;
 }
 
-.shadow {
-  -webkit-text-stroke: 1px grey;
-}
-
 #topBar {
   background-image: url("../images/bg_nav.jpg");
+}
+#navcss {
+  color: rgb(233, 193, 122);
 }
 
 .card {
@@ -35,10 +33,6 @@ label {
 #status,
 #order-type {
   width: 20%;
-}
-.add {
-  width: 40%;
-  margin: auto;
 }
 .itemList {
   width: 30%;
@@ -80,7 +74,7 @@ label {
 }
 
 .title {
-  color: #C91313;
+  color: #c91313;
 }
 
 .place-order {
@@ -92,7 +86,7 @@ label {
 } */
 
 .lugrasimo-regular {
-    font-family: "Lugrasimo", cursive;
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: "Lugrasimo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
