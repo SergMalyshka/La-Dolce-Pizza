@@ -81,7 +81,7 @@ router.get("/dishes/:id", async (req, res) => {
     });
     const editDish = oneDish.get({ plain: true });
     console.log(editDish);
-    res.render("dish-edit", { editDish });
+    res.render("dish-edit", { editDish, loggedIn: req.session.loggedIn, cart: req.session.cart });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
