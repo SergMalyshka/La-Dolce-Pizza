@@ -64,11 +64,11 @@ label {
     width: 70%;
   }
 }
-
+/* 
 #checkOut {
   padding: 2%;
   background-color: white;
-}
+} */
 
 .form-text{
   color: black;
@@ -82,6 +82,14 @@ label {
 .title {
   color: #C91313;
 }
+
+.place-order {
+  color: black;
+}
+
+/* .empty-cart {
+  
+} */
 
 .lugrasimo-regular {
     font-family: "Lugrasimo", cursive;
