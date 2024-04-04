@@ -119,8 +119,9 @@ router.post('/checkout', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+
     try {
-        // console.log(req.body)
+        console.log(req.body)
         const orderData = await Order.update({
             order_status: req.body.status,
             order_total: req.body.total,
@@ -135,7 +136,6 @@ router.put('/:id', async (req, res) => {
                     id: req.params.id
                 }
             });
-        console.log('--------------over here-------------------------')
 
         if (!orderData) {
             res.status(404).json({ message: "No order with this id" })
