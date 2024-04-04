@@ -1,22 +1,16 @@
-<div class="container">
+<div class="container text-primary-emphasis text-center">
   
   {{#if loggedIn}}
   <div class="header">
-    <h1 class="text-center shadow">Manager Dashboard</h1>
+    <h1 class="text-center">Manager Dashboard</h1>
   </div>
   <div>
-    <h2 class="text-warning text-center shadow">All orders:</h2>
     {{#if ordered}}
       <div>
         <h3>Ordered</h3>
       </div>
       {{#each ordered as |order|}}
-    {{!-- <div class="card dishList" id="itemList">
-      <p>Customer Phone: {{order.phone}}</p>
-      <p>Order Status: {{order.order_status}}</p>
-      <a href="/dashboard/{{order.id}}">Order Details</a>
-    </div> --}}
-      <div class="card dishList">
+         <div class="card dishList">
         <ul class="list-inline">
           <li class="list-inline-item">Customer Phone: {{order.phone}}</li>
           <li class="list-inline-item">Order Status: {{order.order_status}}</li>

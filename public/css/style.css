@@ -3,7 +3,7 @@ body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: rgb(233, 193, 122);
-  background-size: contain;
+  background-size: cover;
   background-position: center;
 }
 
@@ -45,7 +45,7 @@ label {
   margin: auto;
 }
 .dishList {
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 .orderList {
@@ -70,7 +70,7 @@ label {
   background-color: white;
 } */
 
-.form-text{
+.form-text {
   color: black;
   font-size: 16px;
 }
