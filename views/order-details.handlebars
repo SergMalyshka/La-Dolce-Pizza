@@ -11,8 +11,8 @@
   <div class="card">
     <p>Items:</p>
     <ul>
-      {{#each orders.Dishes as |dish|}}
-        <li>{{dish.name}}</li>
+      {{#each properData as |order|}}
+        <li>{{order.name}} x {{order.quant}}</li>
       {{/each}}
     </ul>
   </div>

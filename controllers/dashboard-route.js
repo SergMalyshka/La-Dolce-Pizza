@@ -54,13 +54,20 @@ router.get('/:id', async (req, res) => {
             include: [{ model: Dish }]
         });
 
-        // console.log(orderDb)
-
         const orders = orderDb.get({ plain: true });
 
-        // console.log('cooked data-------------------', orders);
+        const dishData = orders.Dishes;
+        const properData = []
 
-        res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart });
+        for (var i = 0; i < orders.Dishes.length; i++) {
+            data = {name : dishData[i].name, quant : dishData[i].OrderList.Quantity}
+            properData.push(data)
+        }
+
+        console.log(properData)
+
+
+        res.render('order-details', { orders, loggedIn: req.session.loggedIn, cart: req.session.cart, properData });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
