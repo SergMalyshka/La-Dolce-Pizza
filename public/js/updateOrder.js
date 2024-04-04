@@ -9,15 +9,7 @@ const orderUpdateHandler = async (event) => {
     const paymentType = document.querySelector('#payment-type').value.trim();
     const total = document.querySelector('#order-total').value.trim();
     const idValue = document.querySelector('#submit-btn').value
- 
-    // console.log(type)
-    // console.log(phone)
-    // console.log(address)
-    // console.log(status)
-    // console.log(instructions)
-    // console.log(paymentType)
-    // console.log(total)
-    // console.log(idValue)
+
 
     if (type && phone && address && status && instructions && paymentType && total) {
         const response = await fetch(`/api/orders/${idValue}`, {
@@ -33,8 +25,8 @@ const orderUpdateHandler = async (event) => {
             }),
             headers: { 'Content-Type': 'application/json' },
         });
+        console.log(response)
 
-        // console.log(response)
         if (response.ok) {
             document.location.replace(`/dashboard/${idValue}`)
         } else {

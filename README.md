@@ -26,7 +26,7 @@ This application is web-based and has no installation requirements. Admin level 
 
 ## Usage
 
-Navigate to [Pizzateco Romana](https://sheltered-coast-35697-c1a1e314abe2.herokuapp.com/). From the homepage, a user can go to the menu and enter customer ordereds. When ordering is complete , customer phone number and address (if delivery) are entered and order completed. Orders can be modified if needed with manager access in the dashboard. Select any order to update any item in the order. Orders can be marked ordered, preparing, canceled, out for delivery, or completed. Manager access allows modifications to the menu: adding menu items, changing menu item name or price, and deleting menu items.
+Navigate to [Pizzateco Romana](https://stormy-journey-39722-b2e17c23bcea.herokuapp.com/). From the homepage, a user can go to the menu and enter customer ordereds. When ordering is complete , customer phone number and address (if delivery) are entered and order completed. Orders can be modified if needed with manager access in the dashboard. Select any order to update any item in the order. Orders can be marked ordered, preparing, canceled, out for delivery, or completed. Manager access allows modifications to the menu: adding menu items, changing menu item name or price, and deleting menu items.
 
 [Home page](./public/images/home_page.jpg)
 
