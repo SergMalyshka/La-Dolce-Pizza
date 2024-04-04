@@ -1,15 +1,15 @@
 <div class="container text-center">
 
   <div>
-    <h1>Place an Order</h1>
+    <h1 class="place-order lugrasimo-regular">Place an Order</h1>
   </div>
 
 </div>
 
 {{#if cart}}
-<div id="checkOut">
+<div id="checkOut" class="card">
   <form>
-    <div class="row">
+    <div class="row card-body">
 
       <div class="col-8">
 
@@ -57,13 +57,19 @@
 
     </div>
 
-    <button type="submit" id="checkoutBtn">Complete Order</button>
+    <button type="submit" id="checkoutBtn" class="btn btn-primary">Complete Order</button>
   </form>
-    <button id="cancel-order">Cancel order</button>
+  <div>
+    <button id="cancel-order" class="btn btn-danger">Cancel order</button>
+  </div>
 </div>
 
 {{else}}
-<h2>There is nothing in your cart, please visit the menu page to add items to your cart</h2>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="empty-cart lugrasimo-regular">There is nothing in your cart, please visit the menu page to add items to your cart</h2>
+    </div>
+  </div>
 {{/if}}
 
 <div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
